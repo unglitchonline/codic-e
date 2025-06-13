@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos</title>
+  <style>
+    .banner-container {
+      width: 100%;
+      overflow: hidden;
+      /* background: #f0f0f0; */
+    }
+
+    .banner-track {
+      display: flex;
+      animation: scrollBanner 20s linear infinite;
+      width: max-content;
+    }
+
+    .banner-track img {
+      height: 150px;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    @keyframes scrollBanner {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .banner-track .duplicate {
+      display: flex;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: white;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      width: 100vw;
+    }
+
+    .grid-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .grid-item:hover img {
+      /* transform: scale(1.05); */
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: white;
+      color: black;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .grid-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Mobile view: 1 columna */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="banner-container">
+  <div class="banner-track">
+    <div class="duplicate">
+      <img src="media/logos/10.png">
+      <img src="media/logos/11.png">
+      <img src="media/logos/12.png">
+      <img src="media/logos/13.png">
+      <img src="media/logos/14.png">
+      <img src="media/logos/15.png">
+      <img src="media/logos/16.png">
+      <img src="media/logos/17.png">
+      <img src="media/logos/18.png">
+      <img src="media/logos/19.png">
+      <img src="media/logos/20.png">
+      <img src="media/logos/21.png">
+      <img src="media/logos/22.png">
+      <img src="media/logos/23.png">
+      <img src="media/logos/24.png">
+      <img src="media/logos/25.png">
+      <img src="media/logos/26.png">
+      <img src="media/logos/27.png">
+      <img src="media/logos/28.png">
+      <img src="media/logos/29.png">
+      <img src="media/logos/30.png">
+    </div>
+    <div class="duplicate">
+      <img src="media/logos/10.png">
+      <img src="media/logos/11.png">
+      <img src="media/logos/12.png">
+      <img src="media/logos/13.png">
+      <img src="media/logos/14.png">
+      <img src="media/logos/15.png">
+      <img src="media/logos/16.png">
+      <img src="media/logos/17.png">
+      <img src="media/logos/18.png">
+      <img src="media/logos/19.png">
+      <img src="media/logos/20.png">
+      <img src="media/logos/21.png">
+      <img src="media/logos/22.png">
+      <img src="media/logos/23.png">
+      <img src="media/logos/24.png">
+      <img src="media/logos/25.png">
+      <img src="media/logos/26.png">
+      <img src="media/logos/27.png">
+      <img src="media/logos/28.png">
+      <img src="media/logos/29.png">
+      <img src="media/logos/30.png">
+    </div>
+  </div>
+</div>
+  <div class="grid-container">
+    <!-- 2025 -->
+    <div class="grid-item">
+        <img src="media/2025.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2025_proximamente.png">
+      <div class="overlay">
+        <h3>P r o x i m a m e n t e</h3>
+        <p>. . .</p>
+      </div>
+
+    </div>
+    <div class="grid-item">
+      <img src="media/2025_proximamente.png">
+      <div class="overlay">
+        <h3>P r o x i m a m e n t e</h3>
+        <p>. . .</p>
+      </div>
+    </div>
+    <!-- 2025 -->
+
+    <!-- 2024 -->
+    <div class="grid-item">
+        <img src="media/2024.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2024_fiac.jpeg">
+      <div class="overlay">
+        <h3>Festival Internacional de Arte Contemporáneo</h3>
+        <p>León, Gto.</p>
+      </div>
+
+    </div>
+    <div class="grid-item">
+      <img src="media/2024_qro.jpg">
+      <div class="overlay">
+        <h3>MACQ</h3>
+        <p>Querétaro, Qro.</p>
+      </div>
+    </div>
+    <!-- 2024 -->
+
+    <!-- 2023 -->
+    <div class="grid-item">
+        <img src="media/2023.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2023_leon.jpeg">
+      <div class="overlay">
+        <h3>Torre Andrade</h3>
+        <p>León, Gto.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Bazooka</h3>
+        <p>Ciudad de México</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Aura Space</h3>
+        <p>Guadalajara, Jalisco.</p>
+      </div>
+    </div>
+    <!-- 2023 -->
+
+    <!-- 2022 -->
+    <div class="grid-item">
+        <img src="media/2022.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Clandestina</h3>
+        <p>Ciudad de México</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Cine Martes de Terraza</h3>
+        <p>León, Gto.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2023_gto.jpg">
+      <div class="overlay">
+        <h3>Niño Caído</h3>
+        <p>Guanajuato, Gto.</p>
+      </div>
+    </div>
+    <!-- 2022 -->
+
+    <!-- 2021 -->
+    <div class="grid-item">
+        <img src="media/2021.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2021_sma.jpg">
+      <div class="overlay">
+        <h3>Axolotl Centro Cultural</h3>
+        <p>San Miguel de Allende, Gto.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2021_guadalajara.jpg">
+      <div class="overlay">
+        <h3>El Mono Sílabo</h3>
+        <p>Guadalajara, Jalisco.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2021_morelia.jpg">
+      <div class="overlay">
+        <h3>El Foro Centro Cultural</h3>
+        <p>Morelia, Michoacán.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2021_cdmx.jpg">
+      <div class="overlay">
+        <h3>Complejo Cultural Los Pinos</h3>
+        <p>Ciudad de México</p>
+      </div>
+    </div>
+    <!-- 2021 -->
+
+    <!-- 2020 -->
+    <div class="grid-item">
+        <img src="media/2020.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2020_pandemia.png">
+      <div class="overlay">
+        <h3>Transmisión en vivo</h3>
+        <p>Restricciones por COVID-19<br>se puede visualizar <a href="">aquí</a></p>
+      </div>
+    </div>
+    <!-- 2020 -->
+
+    <!-- 2019 -->
+    <div class="grid-item">
+        <img src="media/2019.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Centro de Cultura Compartida</h3>
+        <p>Querétaro, Qro.</p>
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <img src="media/2019_guadalajara.jpg">
+      <div class="overlay">
+        <h3>LAARVA</h3>
+        <p>Guadalajara, Jalisco.</p>
+      </div>
+    </div>
+    <!-- 2019 -->
+
+    <!-- 2018 -->
+    <div class="grid-item">
+        <img src="media/2018.png">
+    </div>
+
+    <div class="grid-item">
+      <img src="">
+      <div class="overlay">
+        <h3>Cine Martes de Terraza</h3>
+        <p>León, Gto.</p>
+      </div>
+    </div>
+    <!-- 2018 -->
+  </div>
+</body>
+</html>
