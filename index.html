@@ -4,9 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proyectos</title>
-  <style></style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .gif {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gif-mobile {
+      display: none;
+    }
+
+    /* Mostrar GIF móvil en pantallas pequeñas */
+    @media (max-width: 768px) {
+      .gif-desktop {
+        display: none;
+      }
+      .gif-mobile {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
-  <p>en construcción</p>
+  <img src="media/hor_loading.gif" alt="Proyectos Desktop" class="gif gif-desktop">
+  <img src="media/vertical_loading.gif" alt="Proyectos Mobile" class="gif gif-mobile">
 </body>
 </html>
