@@ -7,11 +7,11 @@
      <title>Leonardo Rangel – Portafolio</title>
     <link href="styles/style_main.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="media/cinepanfletos.png">
-  <style>
+    <style>
     body {
       font-family: 'Helvetica Neue', sans-serif;
       margin: 0;
-      padding: 40px;
+      padding: 40px 20px;
       background-color: #f9f9f9;
       color: #222;
     }
@@ -45,7 +45,7 @@
 
     .column {
       flex: 1;
-      min-width: 300px;
+      min-width: 280px;
     }
 
     iframe, video, object {
@@ -87,6 +87,63 @@
       text-align: center;
       margin-bottom: 10px;
     }
+
+    .pdf-section {
+      margin-top: 60px;
+      padding: 20px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .pdf-viewer {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .wp-block-file__button {
+      background-color: #222;
+      color: white;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .wp-block-file__button:hover {
+      background-color: #444;
+    }
+
+    /* YouTube masonry-style grid */
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .video-grid iframe {
+      flex: 1 1 300px;
+      max-width: 100%;
+      height: 315px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .video-grid iframe {
+        height: 220px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -96,7 +153,6 @@
       <div class="column">
         <p>Leonardo Rangel<br>CDMX/GDL/GTO<br>Artista sonoro, productor musical y gestor cultural interesado por los Estudios Culturales, Transmodernidad, Interdisciplina y Fenómenos Intermedia.<br>Co-director en Códic-e y Project Manager en Hunter Studios.</p>
       </div>
-
       <div class="column">
         <img src="media/leo.png" alt="Leonardo Rangel" style="width:100%; border-radius:8px;">
       </div>
@@ -104,27 +160,46 @@
 
     <div class="spacer"></div>
 
-    <div class="column">
-      <iframe style="height:450px" src="https://open.spotify.com/embed/playlist/0e8x6WbJpRRvQibCZT4V6m?utm_source=generator&theme=0" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div class="columns">
+      <div class="column">
+        <iframe src="https://open.spotify.com/embed/album/1DhEG4NjexLboW5QOC4INw?utm_source=generator&theme=0" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="column">
+        <iframe src="https://open.spotify.com/embed/playlist/0e8x6WbJpRRvQibCZT4V6m?utm_source=generator&theme=0" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
 
     <div class="spacer"></div>
 
-    <h2>Videoarte</h2>
+    <!-- PDF Embebido -->
+    <div class="pdf-section">
+      <h2>Publicación reciente</h2>
+      <p class="center">"Estas ruinas que vez" — Leonardo Rangel (PDF interactivo)</p>
 
-    <figure>
-      <video controls src="https://www.codic-e.org/wp-content/uploads/2024/12/portafolio-diseno-sonoro.mp4"></video>
-      <figcaption>Reel de diseño sonoro</figcaption>
-    </figure>
-    <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf" width="100%" height="600px"></iframe>
+      <div class="pdf-viewer">
+        <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf"
+          width="100%" height="600" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="center">
+        <a href="https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf" target="_blank" class="wp-block-file__button">Descargar PDF</a>
+      </div>
+    </div>
 
     <div class="spacer"></div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Yp1RWj0oUQ4?si=qjbHTF3SYx6Ll6sg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <!-- Videos YouTube en grid -->
+    <h2>Video-performance y documentación</h2>
+    <div class="video-grid">
+      <iframe src="https://www.youtube.com/embed/Yp1RWj0oUQ4?si=qjbHTF3SYx6Ll6sg" title="Video 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/kH8WlUMhaYM?si=Em5DpbF4k16S5hGX" title="Video 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/pfgYCxczag4?si=jtGEosHNxuagvqzb" title="Video 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </div>
+
     <div class="spacer"></div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/kH8WlUMhaYM?si=Em5DpbF4k16S5hGX;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <div class="spacer"></div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/pfgYCxczag4?si=jtGEosHNxuagvqzb;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <div class="spacer"></div>
+
+    <!-- Trayectoria -->
     <h2><strong>Trayectoria</strong></h2>
     <div class="paragraphs">
       <p>Andante // Happening sonoro // Festival Internacional de Arte Informal, CDMX, 2015.</p>
@@ -148,7 +223,6 @@
       <p>Cinepanfletos 68 Dosmilveintiuno // Concierto-performance // Axolotl SMA Guanajuato, 2021.</p>
       <p>Cinepanfletos 68 // Concierto-performance // Festival Internacional de Arte Contemporáneo, 2024.</p>
     </div>
-
   </div>
 </body>
 </html>
