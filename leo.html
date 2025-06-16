@@ -144,6 +144,46 @@
         height: 220px;
       }
     }
+    .trayectoria-section {
+    margin-top: 60px;
+  }
+
+  .trayectoria-section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  .trayectoria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background-color: whitesmoke;
+    border-left: 4px solid #000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .project-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .project-details {
+    font-size: 0.95em;
+    color: #444;
+    line-height: 1.5;
+  }
   </style>
 </head>
 <body>
@@ -198,31 +238,86 @@
     </div>
 
     <div class="spacer"></div>
+    <section class="trayectoria-section">
+  <h2><strong>Trayectoria</strong></h2>
+  <div class="trayectoria-grid">
 
-    <!-- Trayectoria -->
-    <h2><strong>Trayectoria</strong></h2>
-    <div class="paragraphs">
-      <p>Andante // Happening sonoro // Festival Internacional de Arte Informal, CDMX, 2015.</p>
-      <p>Llamado de una pesadilla // Musicalización // Compañía de teatro Contratanto, 2015.</p>
-      <p>A qué jugamos // Diseño sonoro // Compañía Infantil de teatro de la Casa de la Cultura, 2016.</p>
-      <p>L’espirit de l’escalier // Live Act // Beehive Electronic, 2017.</p>
-      <p>No lo hemos entendido bien // Video-instalación/live act // Festival Internacional de Arte Contemporáneo, 2017.</p>
-      <p>Video-semblanza a Bill Viola // Diseño sonoro // Universidad de Lisboa, 2017.</p>
-      <p>Pedro Páramo (adaptación para niños) // Musicalización // Compañía Infantil de teatro de la Casa de la Cultura, 2017.</p>
-      <p>Not even sorry // Videoclip experimental // Terra Forma, 2018.</p>
-      <p>Cinétracts 68 // Concierto-performance // Forum Cultural Guanajuato, León, Gto. MX., 2018.</p>
-      <p>Colours pt I (Isle of man) // Videoarte // Terra Forma, 2018.</p>
-      <p>El olvido que seremos // Videoarte // BOVEDA: Muestra de Video Experimental, 2019.</p>
-      <p>El olvido que seremos // Videoarte // DysphorIia, 2019.</p>
-      <p>Cinétracts 68 // Concierto-performance // LARVA, GUADALAJARA, MX. 2019.</p>
-      <p>Cinétracts 68 // Concierto-performance // Centro de Cultura Compartida, 2019.</p>
-      <p>De espacio-tiempo // Intervención sonora // XIMHAI Celaya, 2020.</p>
-      <p>Cinepanfletos 68 Dosmilveintiuno // Concierto-performance // Complejo Cultural Los Pinos, 2021.</p>
-      <p>Cinepanfletos 68 Dosmilveintiuno // Concierto-performance // El Foro Morelia, 2021.</p>
-      <p>Cinepanfletos 68 Dosmilveintiuno // Concierto-performance // El Mono Sílabo Guadalajara, 2021.</p>
-      <p>Cinepanfletos 68 Dosmilveintiuno // Concierto-performance // Axolotl SMA Guanajuato, 2021.</p>
-      <p>Cinepanfletos 68 // Concierto-performance // Festival Internacional de Arte Contemporáneo, 2024.</p>
+    <div class="project-card">
+      <div class="project-title">Andante</div>
+      <div class="project-details">Happening sonoro — Festival Internacional de Arte Informal, CDMX, 2015</div>
     </div>
+
+    <div class="project-card">
+      <div class="project-title">Llamado de una pesadilla</div>
+      <div class="project-details">Musicalización — Compañía de teatro Contratanto, 2015</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">A qué jugamos</div>
+      <div class="project-details">Diseño sonoro — Compañía Infantil de teatro de la Casa de la Cultura, 2016</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">L’espirit de l’escalier</div>
+      <div class="project-details">Live Act — Beehive Electronic, 2017</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">No lo hemos entendido bien</div>
+      <div class="project-details">Video-instalación / Live Act — Festival Internacional de Arte Contemporáneo, 2017</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Video-semblanza a Bill Viola</div>
+      <div class="project-details">Diseño sonoro — Universidad de Lisboa, 2017</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Pedro Páramo (adaptación para niños)</div>
+      <div class="project-details">Musicalización — Compañía Infantil de teatro, 2017</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Not even sorry</div>
+      <div class="project-details">Videoclip experimental — Terra Forma, 2018</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Colours pt I (Isle of man)</div>
+      <div class="project-details">Videoarte — Terra Forma, 2018</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Cinétracts 68</div>
+      <div class="project-details">Concierto-performance — Forum Cultural Guanajuato, 2018</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">El olvido que seremos</div>
+      <div class="project-details">Videoarte — BÓVEDA y DysphorIia, 2019</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Cinétracts 68</div>
+      <div class="project-details">Concierto-performance — LARVA, GDL / Centro de Cultura Compartida, 2019</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">De espacio-tiempo</div>
+      <div class="project-details">Intervención sonora — XIMHAI Celaya, 2020</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Cinepanfletos 68 Dosmilveintiuno</div>
+      <div class="project-details">Concierto-performance — Los Pinos, El Foro Morelia, Mono Sílabo GDL, Axolotl SMA, 2021</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Cinétracts 68</div>
+      <div class="project-details">Concierto-performance — Festival Internacional de Arte Contemporáneo, 2024</div>
+    </div>
+
   </div>
+</section>
 </body>
 </html>
