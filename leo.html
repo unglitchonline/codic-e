@@ -15,7 +15,32 @@
       background-color: #f9f9f9;
       color: #222;
     }
+      .pdf-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
+    .pdf-page {
+      flex: 1 1 calc(33.333% - 20px);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    canvas {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .pdf-page {
+        flex: 1 1 100%;
+      }
+    }
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -211,21 +236,51 @@
 
     <div class="spacer"></div>
 
-    <!-- PDF Embebido -->
-    <div class="pdf-section">
-      <h2>Publicación reciente</h2>
-      <p class="center">"Estas ruinas que vez" — Leonardo Rangel (PDF interactivo)</p>
-
-      <div class="pdf-viewer">
-        <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf"
-          width="100%" height="600" allowfullscreen loading="lazy">
-        </iframe>
-      </div>
-
-      <div class="center">
+    <!-- Incluir PDF.js -->
+     <h2>Publicación reciente</h2>
+     <p class="center">"Estas ruinas que vez" — Leonardo Rangel</p>
+     <div class="center">
         <a href="https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf" target="_blank" class="wp-block-file__button">Descargar PDF</a>
       </div>
-    </div>
+        <div class="spacer"></div>
+     <div class="pdf-grid">
+    <div class="pdf-page"><canvas id="page1"></canvas></div>
+    <div class="pdf-page"><canvas id="page2"></canvas></div>
+    <div class="pdf-page"><canvas id="page3"></canvas></div>
+  </div>
+
+  <!-- PDF.js desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <script>
+    const url = 'https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf';
+
+    const renderPage = (pdf, pageNumber, canvasId) => {
+      pdf.getPage(pageNumber).then(page => {
+        const scale = 1;
+        const viewport = page.getViewport({ scale });
+        const canvas = document.getElementById(canvasId);
+        const context = canvas.getContext('2d');
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        page.render({
+          canvasContext: context,
+          viewport: viewport
+        });
+      });
+    };
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    pdfjsLib.getDocument(url).promise.then(pdf => {
+      // Renderiza las páginas 1 a 3
+      renderPage(pdf, 1, 'page1');
+      renderPage(pdf, 2, 'page2');
+      renderPage(pdf, 3, 'page3');
+    });
+  </script>
 
     <div class="spacer"></div>
 
