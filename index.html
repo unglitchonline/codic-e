@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -42,5 +42,115 @@
 <body>
   <img src="media/hor_loading.gif" alt="Proyectos Desktop" class="gif gif-desktop">
   <img src="media/vertical_loading.gif" alt="Proyectos Mobile" class="gif gif-mobile">
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mockup Página Web</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .section {
+      display: none;
+      width: 100%;
+      height: 100vh;
+    }
+    .active {
+      display: block;
+    }
+    picture, img {
+      width: 100%;
+      height: 100vh;
+      object-fit: contain;
+      cursor: pointer;
+    }
+    #inicio picture img {
+      transition: transform 0.4s ease;
+    }
+    #inicio picture img:hover {
+      transform: scale(1.1);
+    }
+    .iconos-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    .iconos-container picture,
+    .iconos-container picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .iconos-grid {
+      position: absolute;
+      top: 10%;
+      right: 3%;
+      display: grid;
+      grid-template-columns: repeat(2, 90px);
+      grid-template-rows: repeat(3, 90px);
+      gap: 20px;
+    }
+    .icono {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .icono:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sección de inicio -->
+  <section id="inicio" class="section active" onclick="irAIconos()">
+    <picture>
+      <source media="(max-width: 768px)" srcset="media/inicio-movil.png" />
+      <img src="media/inicio-desktop.png" alt="Inicio" />
+    </picture>
+  </section>
+
+  <!-- Sección de iconos -->
+  <section id="iconos" class="section">
+  <div class="iconos-container">
+    <picture>
+      <source media="(max-width: 768px)" srcset="media/iconos-movil.png" />
+      <img src="media/iconos-desktop.png" alt="Iconos" />
+    </picture>
+
+    <!-- Iconos encima -->
+     <div class="iconos-grid">
+      <a href="https://www.unglitchonline.xyz/" target="_blank"><img src="media/icono1.png" class="icono" /></a>
+      <img src="media/icono2.png" class="icono" />
+      <a href="leo.html" target="_blank"><img src="media/icono3.png" class="icono" /></a>
+      <img src="media/icono4.png" class="icono" />
+      <a href="cinepanfletos.html" target="_blank"><img src="media/icono5.png" class="icono" /></a>
+      <img src="media/icono6.png" class="icono" />
+      
+    </div>
+  </div>
+</section>
+
+  <script>
+    function irAIconos() {
+      document.getElementById('inicio').classList.remove('active');
+      document.getElementById('iconos').classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
