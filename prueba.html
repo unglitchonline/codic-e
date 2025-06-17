@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="unglitchonline">
+    <link rel="shortcut icon" href="media/codice.png">
+    <title>Códic-e</title>
+    <style>
+        * {
+            
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tahoma', 'Arial', sans-serif;
+            font-size: 11px;
+        }
+        body {
+            background: radial-gradient(circle, #bb5090 0%, #d6b5c7 100%);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .desktop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 40px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 80px);
+            grid-auto-rows: min-content;
+            gap: 20px;
+            align-content: start;
+        }
+        
+        .desktop-icon {
+            width: 80px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .desktop-icon span {
+            margin-top: 5px;
+            text-shadow: 1px 1px 1px black;
+            word-break: break-word;
+            line-height: 1.2;
+        }
+        
+        .icon-image {
+            width: 32px;
+            height: 32px;
+            background-color: #C0C0C0;
+            border: 1px solid;
+            border-color: white #808080 #808080 white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #d6b5c7;
+            /* background: #C0C0C0; */
+            border-top: 1px solid white;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 1000;
+        }
+        
+        .start-button {
+            height: 24px;
+            /* background: #463975; */
+            background: linear-gradient(to bottom, #404040);
+            border: 1px solid;
+            border-top-color: #d0d0d0;
+            border-left-color: #d0d0d0;
+            border-bottom-color: #404040;
+            border-right-color: #404040;
+            color: white;
+            font-weight: bold;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .start-button:active {
+            border-top-color: #404040;
+            border-left-color: #404040;
+            border-bottom-color: #d0d0d0;
+            border-right-color: #d0d0d0;
+        }
+        
+        .start-button img {
+            margin-right: 5px;
+        }
+        
+        .tray {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 5px;
+        }
+        
+        .clock {
+            background-color: #d0d0d0;
+            border: 1px solid;
+            border-top-color: #f0f0f0;
+            border-left-color: #f0f0f0;
+            border-bottom-color: #808080;
+            border-right-color: #808080;
+            padding: 2px 6px;
+        }
+        
+        .start-menu {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            width: 300px;
+            /* background-color: #C0C0C0; */
+            background-color: #d6b5c7;
+            border: 2px solid;
+            border-top-color: white;
+            border-left-color: white;
+            border-bottom-color: #808080;
+            border-right-color: #808080;
+            display: none;
+            z-index: 999;
+        }
+        
+        .start-menu-content {
+            display: flex;
+            padding: 5px 0;
+        }
+        
+        .start-menu-left, .start-menu-right {
+            flex: 1;
+            padding: 5px 0;
+        }
+        
+        .start-menu-left {
+            border-right: 1px solid #808080;
+        }
+        
+        .start-menu-item {
+            padding: 10px 20px;
+            color: black;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .start-menu-item:hover {
+            /* background-color: #000080; */
+            background-color: #463975;
+            color: white;
+        }
+        
+        .start-menu-right .start-menu-item {
+            padding-left: 15px;
+        }
+        
+        .menu-separator {
+            height: 1px;
+            background: #808080;
+            margin: 3px 0;
+        }
+        .iconos-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        .iconos-container picture, .iconos-container picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .iconos-grid {
+            position: absolute;
+            top: 10%;
+            right: 3%;
+            display: grid;
+            grid-template-columns: repeat(2, 90px);
+            grid-template-rows: repeat(3, 90px);
+            gap: 20px;
+        }
+        .icono {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .icono:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Escritorio con iconos -->
+    
+    <!-- <div class="desktop">
+        <a href="https://www.microsoft.com" class="desktop-icon" target="_blank">
+            <div class="icon-image"><img src="media/cinepanfletos.png" style="width: 80px; height: 80px;"></div>
+            <span>Cinepanfletos</span>
+        </a>
+        <a href="https://www.microsoft.com" class="desktop-icon" target="_blank">
+            <div class="icon-image">W2K</div>
+            <span>Abigail</span>
+        </a>
+        <a href="https://www.microsoft.com" class="desktop-icon" target="_blank">
+            <div class="icon-image">W2K</div>
+            <span>Leonardo</span>
+        </a>
+    </div> -->
+
+    <div class="iconos-grid">
+      <a href="https://www.unglitchonline.xyz/" target="_blank"><img src="media/icono1.png" class="icono" /></a>
+      <img src="media/icono2.png" class="icono" />
+      <a href="leo.html" target="_blank"><img src="media/icono3.png" class="icono" /></a>
+      <img src="media/icono4.png" class="icono" />
+      <a href="cinepanfletos.html" target="_blank"><img src="media/icono5.png" class="icono" /></a>
+      <img src="media/icono6.png" class="icono" />
+    
+    <!-- Barra de tareas -->
+    <div class="taskbar">
+        <div class="start-button" id="startButton">
+            <svg width="16" height="16" viewBox="0 0 16 16" style="margin-right: 9px;">
+                <rect x="1" y="1" width="14" height="14" fill="#bb5090" stroke="#d6b5c7" stroke-width="0.5"/>
+                <rect x="4" y="4" width="8" height="8" fill="#bb5090" stroke="#d6b5c7" stroke-width="0.5"/>
+            </svg>
+            Start
+        </div>
+        
+        <div class="tray">
+            <div class="clock">11:38 AM</div>
+        </div>
+    </div>
+    
+    <!-- Menú de inicio -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-content">
+            <div class="start-menu-left">
+                <a href="https://support.microsoft.com" class="start-menu-item" target="_blank">Windows Update</a>
+                <a href="#" class="start-menu-item">Programs</a>
+                <a href="#" class="start-menu-item">Documents</a>
+                <a href="#" class="start-menu-item">Settings</a>
+                <a href="#" class="start-menu-item">Search</a>
+                <a href="#" class="start-menu-item">Help</a>
+                <a href="#" class="start-menu-item">Run...</a>
+                <a href="#" class="start-menu-item">Shut Down...</a>
+            </div>
+            <div class="start-menu-right">
+                <a href="https://www.unglitchonline.xyz/" class="start-menu-item">Abigail</a>
+                <a href="leo.html" class="start-menu-item">Leonardo</a>
+                <a href="cinepanfletos.html" class="start-menu-item">Cinepanfletos</a>
+                <a href="#" class="start-menu-item">Contacto</a>
+                <a href="#" class="start-menu-item">Talleres</a>
+                <a href="#" class="start-menu-item">Blog</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mostrar/ocultar menú de inicio
+        const startButton = document.getElementById('startButton');
+        const startMenu = document.getElementById('startMenu');
+        
+        startButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            startMenu.style.display = startMenu.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Ocultar menú al hacer clic en cualquier otro lugar
+        document.addEventListener('click', function() {
+            startMenu.style.display = 'none';
+        });
+        
+        // Prevenir que el clic en el menú lo cierre
+        startMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Simular carga del sistema
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.desktop-icon').style.animation = 'none';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

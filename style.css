@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Tahoma, sans-serif;
+  background: radial-gradient(circle, #c64b94 0%, #f6d1e5 100%);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.desktop {
+  height: 100vh;
+  position: relative;
+}
+
+/* ÍCONOS DEL ESCRITORIO */
+.icons {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #200033;
+  font-size: 12px;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}
+
+/* BARRA DE TAREAS */
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 38px;
+  background-color: #f4c6dd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  border-top: 2px solid #fff;
+  box-shadow: inset 0 2px #fff;
+}
+
+.start-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.start-button {
+  background-color: #e699bb;
+  border: none;
+  font-weight: bold;
+  padding: 5px 12px;
+  cursor: pointer;
+  color: white;
+  box-shadow: inset 1px 1px 0px #fff;
+}
+
+.taskbar-icons img {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  image-rendering: pixelated;
+}
+
+.task-label {
+  font-size: 13px;
+  color: #722e52;
+}
+
+/* RELOJ */
+.clock {
+  font-size: 14px;
+  font-weight: bold;
+  color: #722e52;
+}
+
+/* MENÚ DE INICIO */
+.start-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 180px;
+  background-color: #f6d1e5;
+  border: 2px solid #d98aad;
+  box-shadow: 2px 2px 0 #8a3a63;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.start-menu.visible {
+  display: flex;
+}
+
+.start-menu-header {
+  background-color: #d98aad;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.start-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.start-menu li {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-top: 1px solid #fff;
+  cursor: pointer;
+}
+
+.start-menu li:hover {
+  background-color: #f0b3ce;
+}
+
+.start-menu .shutdown {
+  color: #800000;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .icons {
+    position: static;
+    margin-top: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .taskbar {
+    flex-direction: column;
+    height: auto;
+    gap: 5px;
+  }
+
+  .task-label {
+    font-size: 11px;
+  }
+
+  .icon img {
+    width: 48px;
+    height: 48px;
+  }
+}
