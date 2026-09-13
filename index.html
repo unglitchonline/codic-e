@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Códice</title>
+  <meta name="description"
+    content="ecosistema de creación e investigación cultural que envuelve múltiples proyectos de nuevos medios y transmodernidad">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Códice">
+  <meta property="og:description"
+    content="ecosistema de creación e investigación cultural que envuelve múltiples proyectos de nuevos medios y transmodernidad">
+  <meta property="og:image" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --grey: #86868b;
+      --black: #000000;
+      --light: #f7f7f7;
+      --divider: #e5e5ea;
+      --red: #fd5d5c;
+      --yellow: #fac900;
+      --green: #34c75a;
+      --glass: rgba(255, 255, 255, .10);
+      --glass-border: rgba(255, 255, 255, .20);
+      --label: #f7f7f7;
+      --ease: cubic-bezier(.27, 0, .51, 1);
+      --spring: cubic-bezier(.16, 1, .3, 1);
+      --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none
+    }
+
+    /* ── STAGE ──────────────────────────────────────────── */
+    .stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      animation: pageIn .4s var(--ease) both;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* ── BACKGROUND ─────────────────────────────────────── */
+    .bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url("https://www.codic-e.org/media/bg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── PROGRESSIVE BLUR ───────────────────────────────── */
+    .bl {
+      position: absolute;
+      inset: 0;
+      pointer-events: none
+    }
+
+    .bl-1 {
+      backdrop-filter: blur(.078125px);
+      -webkit-backdrop-filter: blur(.078125px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%)
+    }
+
+    .bl-2 {
+      backdrop-filter: blur(.15625px);
+      -webkit-backdrop-filter: blur(.15625px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%)
+    }
+
+    .bl-3 {
+      backdrop-filter: blur(.3125px);
+      -webkit-backdrop-filter: blur(.3125px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%)
+    }
+
+    .bl-4 {
+      backdrop-filter: blur(.625px);
+      -webkit-backdrop-filter: blur(.625px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%)
+    }
+
+    .bl-5 {
+      backdrop-filter: blur(1.25px);
+      -webkit-backdrop-filter: blur(1.25px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%)
+    }
+
+    .bl-6 {
+      backdrop-filter: blur(2.5px);
+      -webkit-backdrop-filter: blur(2.5px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%)
+    }
+
+    .bl-7 {
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%)
+    }
+
+    .bl-8 {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%)
+    }
+
+    /* ── DESKTOP / ICONS ────────────────────────────────── */
+    .desktop {
+      position: absolute;
+      inset: 0;
+      z-index: 2
+    }
+
+    .icon-slot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      transition: transform .18s var(--spring);
+    }
+
+    .icon-slot.dragging {
+      cursor: grabbing;
+      transition: none
+    }
+
+    .icon-slot.dragging .icon-img {
+      transform: scale(1.06)
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .icon-img {
+      position: relative;
+      width: 80px;
+      height: auto;
+      flex: none;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+      background: rgba(255, 255, 255, .04);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+      will-change: transform;
+    }
+
+    .icon-img img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .icon-label {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -.04em;
+      line-height: 1.4em;
+      color: var(--label);
+      text-align: center;
+      white-space: pre;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+      padding: 0;
+      margin: 0;
+      border-radius: 6px;
+      transition: background-color .18s ease, padding .18s ease, margin .18s ease;
+    }
+
+    .icon:hover .icon-img {
+      transform: scale(1.05)
+    }
+
+    .icon:hover .icon-label,
+    .icon-slot.selected .icon-label {
+      background: rgba(255, 255, 255, .16);
+      padding: 2px 6px;
+      margin: -2px -6px;
+    }
+
+    /* ── WINDOWS ────────────────────────────────────────── */
+    #windows {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none
+    }
+
+    .window {
+      position: absolute;
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(28, 28, 30, .78);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      backdrop-filter: blur(28px) saturate(180%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 2px 10px rgba(0, 0, 0, .35);
+      transform-origin: center center;
+      animation: winIn .35s var(--ease) backwards;
+      -webkit-user-select: none;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+
+    @keyframes winIn {
+      from {
+        opacity: 0;
+        transform: scale(.92)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    .win-bar {
+      flex: none;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 14px;
+      cursor: grab;
+      background: rgba(255, 255, 255, .06);
+      border-bottom: 1px solid rgba(255, 255, 255, .10);
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .window.dragging .win-bar {
+      cursor: grabbing
+    }
+
+    .traffic {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: none
+    }
+
+    .tl {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 0;
+      padding: 0;
+      display: block;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 .5px rgba(0, 0, 0, .18);
+      transition: filter .15s ease;
+      position: relative;
+    }
+
+    .tl::after {
+      content: "";
+      position: absolute;
+      inset: -6px
+    }
+
+    .tl:hover {
+      filter: brightness(1.15)
+    }
+
+    .tl-close {
+      background: var(--red)
+    }
+
+    .tl-min {
+      background: var(--yellow)
+    }
+
+    .tl-max {
+      background: var(--green)
+    }
+
+    .win-title {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      color: rgba(255, 255, 255, .85);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 60px;
+    }
+
+    .win-body {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background: #0a0a0b;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── MICROPÁGINA ────────────────────────────────────── */
+    .mp-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, .15) transparent;
+    }
+
+    .mp-scroll::-webkit-scrollbar {
+      width: 10px
+    }
+
+    .mp-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .14);
+      border-radius: 5px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    .mp-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, .24);
+      background-clip: content-box
+    }
+
+    .mp-hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .mp-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mp-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .75) 100%);
+      pointer-events: none;
+    }
+
+    .mp-hero-title {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 20px;
+      z-index: 2
+    }
+
+    .mp-hero-title h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+    }
+
+    .mp-hero-title p {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .6);
+      font-family: var(--mono);
+      letter-spacing: .02em;
+      /* text-transform: uppercase; */
+    }
+
+    .mp-content {
+      padding: 22px 24px 32px
+    }
+
+    .mp-section {
+      margin-bottom: 24px
+    }
+
+    .mp-section:last-child {
+      margin-bottom: 0
+    }
+
+    .mp-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      /* text-transform: uppercase; */
+      color: var(--grey);
+      margin-bottom: 8px;
+    }
+
+    .mp-section-text {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .82);
+      letter-spacing: -.005em;
+    }
+
+    .mp-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .mp-meta-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .mp-meta-item dt {
+      font-size: 9px;
+      letter-spacing: .14em;
+      /* text-transform: uppercase; */
+      color: var(--grey);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .mp-meta-item dd {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+
+    .mp-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .mp-gallery figure {
+      margin: 0;
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .06);
+      background: #111;
+      cursor: zoom-in;
+      transition: transform .25s var(--ease);
+    }
+
+    .mp-gallery figure:hover {
+      transform: scale(1.015)
+    }
+
+    .mp-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .mp-gallery figcaption {
+      position: absolute;
+      left: 10px;
+      bottom: 8px;
+      font-size: 10px;
+      font-family: var(--mono);
+      color: rgba(255, 255, 255, .7);
+      letter-spacing: .03em;
+    }
+
+    .mp-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: #000;
+      margin-top: 6px;
+    }
+
+    .mp-video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block
+    }
+
+    /* ── DOCK ───────────────────────────────────────────── */
+    .dock-wrap {
+      position: absolute;
+      bottom: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+    }
+
+    .dock {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      overflow: visible;
+    }
+
+    .dock-item {
+      position: relative;
+      flex: none;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 0;
+      background: none;
+      border-radius: 16px;
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      overflow: visible;
+      transition: transform .22s var(--ease);
+      will-change: transform;
+    }
+
+    .dock-item:hover,
+    .dock-item:focus-visible {
+      transform: translateY(-4px) scale(1.08)
+    }
+
+    .dock-item:active {
+      transform: translateY(-1px) scale(1.03)
+    }
+
+    .dock-item:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, .6);
+      outline-offset: 2px
+    }
+
+    .dock-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .dock-divider {
+      flex: none;
+      width: 1px;
+      align-self: stretch;
+      border-radius: 64px;
+      background: var(--divider);
+    }
+
+    .dock-video-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: linear-gradient(150deg, #4a4a4f 0%, #1c1c1e 100%);
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+    }
+
+    .dock-video-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: rgba(255, 255, 255, .92);
+      margin-left: 2px;
+    }
+
+    .tip {
+      position: absolute;
+      bottom: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 10;
+      white-space: nowrap;
+      transition: opacity .18s ease, transform .18s var(--ease);
+      will-change: transform, opacity;
+    }
+
+    .dock-item:hover .tip,
+    .dock-item:focus-visible .tip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-3px);
+    }
+
+    .tip-text {
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -.04em;
+      line-height: 1.3em;
+      padding: 6px 12px;
+      border-radius: 64px;
+    }
+
+    .tip-arrow {
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 9px solid var(--white);
+      margin-top: -1px;
+    }
+
+    /* ── LIGHTBOX ───────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, .88);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .7);
+      transform: scale(.96);
+      transition: transform .3s var(--spring);
+    }
+
+    .lightbox.open img {
+      transform: scale(1)
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (min-width:810px) and (max-width:1199.98px) {
+      .dock-wrap {
+        bottom: 40px
+      }
+
+      .desktop {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(50px, 160px));
+        gap: 24px 16px;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        padding: 24px;
+        overflow-y: auto;
+      }
+
+      .icon-slot {
+        position: static;
+        transform: none !important;
+        touch-action: manipulation
+      }
+
+      .window {
+        max-width: calc(100vw - 32px)
+      }
+    }
+
+    @media (max-width:809.98px) {
+      .dock-wrap {
+        bottom: 40px;
+        max-width: calc(100vw - 16px)
+      }
+
+      .dock {
+        gap: 10px;
+        padding: 10px
+      }
+
+      .dock-item {
+        width: 44px;
+        height: 44px
+      }
+
+      .desktop {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(50px, 150px));
+        gap: 48px 16px;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        padding: 24px 16px 140px;
+        overflow-y: auto;
+      }
+
+      .icon-slot {
+        position: static;
+        transform: none !important;
+        touch-action: manipulation
+      }
+
+      .icon-label {
+        text-decoration: none;
+        font-size: 14px
+      }
+
+      .icon-img {
+        width: 64px
+      }
+
+      .window {
+        width: calc(100vw - 16px) !important;
+        max-width: 520px;
+        left: 8px !important;
+        top: 8px !important;
+        height: calc(100vh - 16px) !important;
+        border-radius: 12px;
+      }
+
+      .win-title {
+        padding-right: 44px
+      }
+
+      .mp-hero-title h1 {
+        font-size: 20px
+      }
+
+      .mp-content {
+        padding: 16px 16px 24px
+      }
+
+      .mp-gallery {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stage" id="stage">
+
+    <div class="bg" aria-hidden="true"></div>
+
+    <div class="bottom-blur" aria-hidden="true">
+      <div class="bl bl-1"></div>
+      <div class="bl bl-2"></div>
+      <div class="bl bl-3"></div>
+      <div class="bl bl-4"></div>
+      <div class="bl bl-5"></div>
+      <div class="bl bl-6"></div>
+      <div class="bl bl-7"></div>
+      <div class="bl bl-8"></div>
+    </div>
+
+    <div class="desktop" id="desktop">
+
+      <!-- ═══ ABIGAIL FUENTES ═══ -->
+      <div class="icon-slot" style="top:49%;left:43%" data-id="af" data-title="abigail fuentes"
+        data-role="arte generativo" data-client="guanajuato" data-contacto="@cyborgfeminista" data-portafolio="unglitchonline.xyz"
+        data-desc="artista intermedia. egresada del departamento de estudios culturales de la universidad de guanajuato. realiza investigación y gestión cultural en torno a textualidades digitales, cuerpos virtuales y ciberfeminismo. co-directora de códice, un ecosistema de creación e investigación transmedia."
+        data-full="https://www.codic-e.org/media/abigail.png" data-gallery="https://www.codic-e.org/media/abigailpza1.png,
+                      https://www.codic-e.org/media/TDxABLETON.png,
+                      https://www.codic-e.org/media/cartelvprs.png,
+                      https://www.codic-e.org/media/sam_altman_pov.png">
+        <div class="icon" tabindex="0" role="button" aria-label="abigail fuentes">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/abigail.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label">abigail fuentes</div>
+        </div>
+      </div>
+
+      <!-- ═══ LEONARDO RANGEL ═══ -->
+      <div class="icon-slot" style="top:20%;left:66%" data-id="lr" data-title="leonardo rangel"
+        data-role="productor musical" data-client="cdmx" data-contacto="@midwestleo_" data-portafolio=""
+        data-desc="artista sonoro, productor musical y gestor cultural interesado por los estudios culturales, transmodernidad, interdisciplina y fenómenos intermedia. co-director en códic-e y director creativo en hunter studios."
+        data-full="https://www.codic-e.org/media/leo.png" data-gallery="https://www.codic-e.org/media/albumleonardo.png,
+                      https://www.codic-e.org/media/albumnohana.png,
+                      https://www.codic-e.org/media/TDxABLETON.png,
+                      https://www.codic-e.org/media/cartelvprs.png,">
+        <div class="icon" tabindex="0" role="button" aria-label="leonardo rangel">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/leo.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label">leonardo rangel</div>
+        </div>
+      </div>
+
+      <!-- cinepanfletos -->
+      <div class="icon-slot" style="top:41%;left:74%" data-id="cp" data-title="cinepanfletos" data-role="investigación periodística" data-client="itinerante"
+        data-contacto="@cinepanfletos" data-portafolio=" " data-desc="concierto performance y videomuestra de panfletos con diferentes temáticas sociales, culturales e históricas"
+        data-full="https://www.codic-e.org/media/cinepanfletos.png" data-gallery="https://www.codic-e.org/media/2022_gto.JPG,
+                      https://www.codic-e.org/media/2021_cdmx.JPG,
+                      https://www.codic-e.org/media/2024_qro.jpg,
+                      https://www.codic-e.org/media/2021_sma.JPG">
+        <div class="icon" tabindex="0" role="button" aria-label="cinepanfletos">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/cinep11.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label">cinepanfletos</div>
+        </div>
+      </div>
+
+      <!-- ═══ PLACEHOLDER 2 ═══ -->
+      <!-- <div class="icon-slot" style="top:62%;left:68%" data-id="p2" data-title=" " data-role=" " data-client=" "
+        data-contacto=" " data-portafolio=" " data-desc=" " data-full=" " data-gallery=" ">
+        <div class="icon" tabindex="0" role="button" aria-label=" ">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/inicio-desktop.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label"></div>
+        </div>
+      </div> -->
+
+      <!-- ═══ PLACEHOLDER 3 ═══ -->
+      <!-- <div class="icon-slot" style="top:20%;left:66%" data-id="p3" data-title=" " data-role=" " data-client=" "
+        data-contacto=" " data-portafolio=" " data-desc=" " data-full=" " data-gallery=" ">
+        <div class="icon" tabindex="0" role="button" aria-label=" ">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/inicio-desktop.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label"></div>
+        </div>
+      </div> -->
+
+      <!-- ═══ PLACEHOLDER 4 ═══ -->
+      <!-- <div class="icon-slot" style="top:41%;left:74%" data-id="p4" data-title=" " data-role=" " data-client=" "
+        data-contacto=" " data-portafolio=" " data-desc=" " data-full=" " data-gallery=" ">
+        <div class="icon" tabindex="0" role="button" aria-label=" ">
+          <div class="icon-img" style="aspect-ratio:1.00258/1">
+            <img src="https://www.codic-e.org/media/inicio-desktop.png" alt="" draggable="false">
+          </div>
+          <div class="icon-label"></div>
+        </div>
+      </div> -->
+
+    </div>
+
+    <div id="windows"></div>
+
+    <div class="dock-wrap">
+      <div class="dock">
+
+        <button class="dock-item" type="button" aria-label="Nosotros" data-window="about">
+          <img src="https://www.codic-e.org/media/leo_abi.png" alt="" draggable="false">
+          <span class="tip"><span class="tip-text">nosotros</span><span class="tip-arrow"></span></span>
+        </button>
+
+        <button class="dock-item" type="button" aria-label="notas" data-window="notas">
+          <img src="https://framerusercontent.com/images/4ar8CL6aUtjymV8jTsXrcPzXCM.svg" alt="" draggable="false">
+          <span class="tip"><span class="tip-text">notas</span><span class="tip-arrow"></span></span>
+        </button>
+
+        <div class="dock-divider" role="separator"></div>
+
+        <a class="dock-item" href="https://www.instagram.com/ccodic_e/" target="_blank" rel="noopener"
+          aria-label="Instagram">
+          <img src="https://framerusercontent.com/images/Q0Z0p8LOZhN2hJ2arLjEtkqQD0.png" alt="" draggable="false">
+          <span class="tip"><span class="tip-text">instagram</span><span class="tip-arrow"></span></span>
+        </a>
+
+        <div class="dock-divider" role="separator"></div>
+
+        <button class="dock-item" type="button" id="showcase" aria-label="Showcase">
+          <span class="dock-video-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z" />
+            </svg>
+          </span>
+          <span class="tip"><span class="tip-text">Showcase</span><span class="tip-arrow"></span></span>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ═══════════════════════════════════════════════════════════
+         CONFIGURATION
+         ═══════════════════════════════════════════════════════════ */
+      const EASE = "cubic-bezier(.27,0,.51,1)";
+      const SPRING = "cubic-bezier(.16,1,.3,1)";
+      const SHOWCASE_URL = "https://www.codic-e.org/media/ESTAS-RUINAS-QUE-VEZ-LEONARDO-RANGEL.pdf";
+      const isTouch = window.matchMedia("(hover: none)").matches;
+      const desktop = document.getElementById("desktop");
+      const winLayer = document.getElementById("windows");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+
+      let iconZ = 2;
+      let winZ = 30;
+
+      /* ═══════════════════════════════════════════════════════════
+         UTILITAIRES
+         ═══════════════════════════════════════════════════════════ */
+      const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+
+      /* --- Resolver de video: cap.so + YouTube + fallback -------- */
+      function resolveVideoUrl(raw) {
+        const v = (raw || "").trim();
+        if (!v) return "";
+
+        // YouTube
+        const ytMatch = v.match(
+          /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/i
+        );
+        if (ytMatch && ytMatch[1]) {
+          const id = ytMatch[1];
+          return "https://www.youtube.com/embed/" + id +
+            "?controls=0&rel=0&modestbranding=1";
+        }
+
+        // cap.so
+        if (v.indexOf("cap.so") !== -1) {
+          const m = v.match(/cap\.so\/([a-zA-Z0-9_-]+)/);
+          if (m && m[1]) {
+            return "https://v.cap.so/" + m[1] + "?controls=1";
+          }
+        }
+
+        // Cualquier otra URL (PDF, mp4, etc.)
+        return v;
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         SELECCIÓN
+         ═══════════════════════════════════════════════════════════ */
+      function select(slot) {
+        desktop.querySelectorAll(".icon-slot").forEach((s) =>
+          s.classList.toggle("selected", s === slot && !!slot)
+        );
+        if (slot) slot.style.zIndex = String(++iconZ);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         DRAG DE ICONOS
+         ═══════════════════════════════════════════════════════════ */
+      function attachIconDrag(slot) {
+        let sx = 0, sy = 0, dx = 0, dy = 0, active = false;
+
+        slot.addEventListener("pointerdown", (e) => {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          if (isTouch) { select(slot); return; }
+          active = true;
+          sx = e.clientX - dx;
+          sy = e.clientY - dy;
+          slot.classList.add("dragging");
+          select(slot);
+          try { slot.setPointerCapture(e.pointerId); } catch (_) { }
+          e.preventDefault();
+        });
+
+        slot.addEventListener("pointermove", (e) => {
+          if (!active) return;
+          dx = e.clientX - sx;
+          dy = e.clientY - sy;
+          slot.style.transform =
+            "translate(calc(-50% + " + dx + "px), calc(-50% + " + dy + "px))";
+        });
+
+        const end = (e) => {
+          if (!active) return;
+          active = false;
+          slot.classList.remove("dragging");
+          try { slot.releasePointerCapture(e.pointerId); } catch (_) { }
+        };
+        slot.addEventListener("pointerup", end);
+        slot.addEventListener("pointercancel", end);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         MICROPÁGINA — HTML builder
+         ═══════════════════════════════════════════════════════════ */
+      function buildMicropagina(data) {
+        // Galería: usa data-gallery si existe, si no cae a [data.full]
+        const gallery = (data.gallery && data.gallery.length)
+          ? data.gallery
+          : (data.full ? [data.full] : []);
+
+        const gallerySection = gallery.length
+          ? `
+            <section class="mp-section">
+              <div class="mp-section-label">galería</div>
+              <div class="mp-gallery">
+                ${gallery.map((src, i) => `
+                  <figure data-full="${esc(src)}">
+                    <img src="${esc(src)}" alt="" draggable="false" loading="lazy">
+                    <figcaption>${String(i + 1).padStart(2, "0")} / ${String(gallery.length).padStart(2, "0")}</figcaption>
+                  </figure>
+                `).join("")}
+              </div>
+            </section>`
+          : "";
+
+        return `
+          <div class="mp-scroll">
+            <div class="mp-hero">
+              <img src="${esc(data.full)}" alt="${esc(data.title)}" draggable="false">
+              <div class="mp-hero-title">
+                <p>${esc(data.role || "Project")} — ${esc(data.client || "")}</p>
+                <h1>${esc(data.title)}</h1>
+              </div>
+            </div>
+
+            <div class="mp-content">
+
+              <section class="mp-section">
+                <div class="mp-section-label">semblanza</div>
+                <p class="mp-section-text">${esc(data.desc)}</p>
+              </section>
+
+              <section class="mp-section">
+                <div class="mp-section-label">detalles</div>
+                <dl class="mp-meta-grid">
+                  <div class="mp-meta-item"><dt>disciplina</dt><dd>${esc(data.role || "")}</dd></div>
+                  <div class="mp-meta-item"><dt>originiario</dt><dd>${esc(data.client || "")}</dd></div>
+                  <div class="mp-meta-item"><dt>instagram</dt><dd>${esc(data.contacto || "")}</dd></div>
+                </dl>
+              </section>
+
+              ${gallerySection}
+
+            </div>
+          </div>
+        `;
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         WINDOW SYSTEM
+         ═══════════════════════════════════════════════════════════ */
+      const openWindows = new Map();
+
+      function focusWindow(el) {
+        el.style.zIndex = String(++winZ);
+      }
+
+      function closeWindow(el) {
+        const id = el.dataset.id;
+        openWindows.delete(id);
+        el.style.animation = "none";
+        void el.offsetWidth;
+        el.style.transformOrigin = "center center";
+        el.style.transition = "opacity .22s ease, transform .22s " + EASE;
+        requestAnimationFrame(() => {
+          el.style.opacity = "0";
+          el.style.transform = "scale(.94)";
+        });
+        setTimeout(() => el.remove(), 250);
+      }
+
+      function attachWindowDrag(el, bar) {
+        let sx = 0, sy = 0, ox = 0, oy = 0, active = false;
+
+        bar.addEventListener("pointerdown", (e) => {
+          if (e.target.closest(".tl")) return;
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          active = true;
+          ox = parseFloat(el.style.left) || 0;
+          oy = parseFloat(el.style.top) || 0;
+          sx = e.clientX;
+          sy = e.clientY;
+          el.classList.add("dragging");
+          focusWindow(el);
+          try { bar.setPointerCapture(e.pointerId); } catch (_) { }
+          e.preventDefault();
+        });
+
+        bar.addEventListener("pointermove", (e) => {
+          if (!active) return;
+          el.style.left = (ox + e.clientX - sx) + "px";
+          el.style.top = (oy + e.clientY - sy) + "px";
+        });
+
+        const end = (e) => {
+          if (!active) return;
+          active = false;
+          el.classList.remove("dragging");
+          try { bar.releasePointerCapture(e.pointerId); } catch (_) { }
+        };
+        bar.addEventListener("pointerup", end);
+        bar.addEventListener("pointercancel", end);
+      }
+
+      function buildWindow(opts) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        let w, h;
+        if (opts.size === "wide") {
+          w = Math.round(Math.min(1000, Math.max(320, vw * 0.82)));
+          h = Math.round(Math.min(720, Math.max(300, vh * 0.78)));
+        } else if (opts.size === "compact") {
+          w = Math.round(Math.min(560, Math.max(300, vw * 0.55)));
+          h = Math.round(Math.min(600, Math.max(280, vh * 0.7)));
+        } else {
+          w = Math.round(Math.min(920, Math.max(300, vw * 0.74)));
+          h = Math.round(Math.min(640, Math.max(240, vh * 0.70)));
+        }
+
+        if (vw < 810) {
+          w = Math.min(w, vw - 16);
+          h = Math.min(h, vh - 16);
+        }
+
+        const n = openWindows.size;
+        const step = 30;
+        const off = ((n % 5) - 2) * step;
+        const left = Math.max(12, Math.min(vw - w - 12, Math.round((vw - w) / 2 + off)));
+        const top = Math.max(12, Math.min(vh - h - 12, Math.round((vh - h) / 2 + off * 0.6)));
+
+        const el = document.createElement("div");
+        el.className = "window";
+        el.dataset.id = opts.id;
+        el.style.width = w + "px";
+        el.style.height = h + "px";
+        el.style.left = left + "px";
+        el.style.top = top + "px";
+        el.style.zIndex = String(++winZ);
+
+        let bodyHTML = "";
+
+        if (opts.video) {
+          const src = resolveVideoUrl(opts.video);
+          bodyHTML = `
+            <div class="mp-scroll">
+              <div class="mp-video" style="margin:0;border-radius:0;aspect-ratio:16/9">
+                <iframe
+                  src="${esc(src)}"
+                  title="${esc(opts.title || 'Video')}"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <div class="mp-content">
+                <section class="mp-section">
+                  <div class="mp-section-label">Showcase</div>
+                  <p class="mp-section-text">${esc(opts.caption || "")}</p>
+                </section>
+              </div>
+            </div>`;
+        } else if (opts.html) {
+          bodyHTML = opts.html;
+        } else {
+          bodyHTML = `<div class="win-body"><img src="${esc(opts.image)}" alt="${esc(opts.title)}" draggable="false"></div>`;
+        }
+
+        el.innerHTML = `
+          <div class="win-bar">
+            <div class="traffic">
+              <button class="tl tl-close" type="button" aria-label="Cerrar"></button>
+              <button class="tl tl-min"   type="button" aria-label="Reducir"></button>
+              <button class="tl tl-max"   type="button" aria-label="Agrandar"></button>
+            </div>
+            <div class="win-title">${esc(opts.title)}</div>
+          </div>
+          <div class="win-body">${bodyHTML}</div>
+        `;
+
+        winLayer.appendChild(el);
+        openWindows.set(opts.id, el);
+
+        const bar = el.querySelector(".win-bar");
+        attachWindowDrag(el, bar);
+
+        el.querySelector(".tl-close").addEventListener("click", (e) => {
+          e.stopPropagation(); closeWindow(el);
+        });
+        el.querySelector(".tl-min").addEventListener("click", (e) => {
+          e.stopPropagation(); closeWindow(el);
+        });
+        el.querySelector(".tl-max").addEventListener("click", (e) => {
+          e.stopPropagation();
+          el.style.transition = "width .25s " + EASE + ", height .25s " + EASE +
+            ", left .25s " + EASE + ", top .25s " + EASE;
+          const maxed = el.dataset.maxed === "1";
+          if (maxed) {
+            el.style.width = el.dataset.pw + "px";
+            el.style.height = el.dataset.ph + "px";
+            el.style.left = el.dataset.pl + "px";
+            el.style.top = el.dataset.pt + "px";
+            el.dataset.maxed = "0";
+          } else {
+            el.dataset.pw = parseFloat(el.style.width);
+            el.dataset.ph = parseFloat(el.style.height);
+            el.dataset.pl = parseFloat(el.style.left);
+            el.dataset.pt = parseFloat(el.style.top);
+            el.style.width = Math.round(window.innerWidth - 24) + "px";
+            el.style.height = Math.round(window.innerHeight - 24) + "px";
+            el.style.left = "12px";
+            el.style.top = "12px";
+            el.dataset.maxed = "1";
+          }
+        });
+
+        el.addEventListener("pointerdown", () => focusWindow(el));
+
+        el.querySelectorAll(".mp-gallery figure").forEach((fig) => {
+          fig.addEventListener("click", () => openLightbox(fig.dataset.full));
+        });
+
+        return el;
+      }
+
+      function openWindow(opts) {
+        if (openWindows.has(opts.id)) {
+          const existing = openWindows.get(opts.id);
+          focusWindow(existing);
+          existing.style.animation = "none";
+          void existing.offsetWidth;
+          existing.animate(
+            [{ transform: "scale(1)" }, { transform: "scale(1.015)" }, { transform: "scale(1)" }],
+            { duration: 260, easing: EASE }
+          );
+          return existing;
+        }
+        return buildWindow(opts);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         LIGHTBOX
+         ═══════════════════════════════════════════════════════════ */
+      function openLightbox(src) {
+        if (!src) return;
+        lightboxImg.src = src;
+        lightbox.classList.add("open");
+      }
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+        setTimeout(() => { if (!lightbox.classList.contains("open")) lightboxImg.src = ""; }, 250);
+      });
+
+      /* ═══════════════════════════════════════════════════════════
+         WIRING — ICONS
+         ═══════════════════════════════════════════════════════════ */
+      desktop.querySelectorAll(".icon-slot").forEach((slot) => {
+        attachIconDrag(slot);
+
+        const data = {
+          id: slot.dataset.id,
+          title: slot.dataset.title,
+          role: slot.dataset.role,
+          client: slot.dataset.client,
+          desc: slot.dataset.desc,
+          full: slot.dataset.full,
+          portafolio: slot.dataset.portafolio,
+          contacto: slot.dataset.contacto,
+          gallery: (slot.dataset.gallery || "")
+            .split(",")
+            .map(s => s.trim())
+            .filter(Boolean)
+        };
+
+        const open = () => openWindow({
+          id: data.id,
+          title: data.title,
+          size: "wide",
+          html: buildMicropagina(data)
+        });
+
+        slot.addEventListener("dblclick", open);
+
+        slot.addEventListener("click", (e) => {
+          select(slot);
+          if (isTouch) open();
+        });
+
+        const icon = slot.querySelector(".icon");
+        if (icon) {
+          icon.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open();
+            }
+          });
+        }
+      });
+
+      desktop.addEventListener("pointerdown", (e) => {
+        if (e.target === desktop) select(null);
+      });
+
+      /* ═══════════════════════════════════════════════════════════
+         WIRING — DOCK
+         ═══════════════════════════════════════════════════════════ */
+      document.querySelectorAll(".dock-item[data-window]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const kind = btn.dataset.window;
+
+          if (kind === "about") {
+            openWindow({
+              id: "about",
+              title: "Nosotros",
+              size: "compact",
+              html: `
+                <div class="mp-scroll">
+                  <div class="mp-content" style="padding-top:28px">
+                    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+                      <img src="https://www.codic-e.org/media/leo_abi.png"
+                           alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.12)">
+                      <div>
+                        <h2 style="margin:0 0 2px;font-size:19px;font-weight:600;letter-spacing:-.02em">Códice</h2>
+                        <p style="margin:0;font-size:12px;color:#86868b;font-family:var(--mono);letter-spacing:.02em">
+                          colectivo intermedia · guanajuato / cdmx
+                        </p>
+                      </div>
+                    </div>
+                    <section class="mp-section">
+                      <div class="mp-section-label">biografía</div>
+                      <p class="mp-section-text">
+                        ecosistema de creación e investigación cultural que envuelve múltiples proyectos de nuevos medios y transmodernidad
+                      </p>
+                    </section>
+                    <section class="mp-section">
+                      <div class="mp-section-label">foco</div>
+                      <p class="mp-section-text">
+                        proyectos intermedia, activaciones sonoras, acciones comunitarias.
+                      </p>
+                    </section>
+                    <section class="mp-section">
+                      <div class="mp-section-label">contacto</div>
+                      <p class="mp-section-text" style="font-family:var(--mono);font-size:12px">
+                        contacto@codic-e.org<br>guanajuato ~ cdmx
+                      </p>
+                    </section>
+                  </div>
+                </div>`
+            });
+          }
+
+          if (kind === "notas") {
+            openWindow({
+              id: "notas",
+              title: "notas",
+              size: "compact",
+              html: `
+                <div class="mp-scroll">
+                  <div class="mp-content" style="padding-top:28px">
+                    <section class="mp-section">
+                      <div class="mp-section-label">ideas que se convierten en proyectos</div>
+                      <p class="mp-section-text">
+                        una colección de notas, pensamientos y palabras que vuelan en el aire de pixeles
+                      </p>
+                    </section>
+                    <section class="mp-section"><div class="mp-section-label">01</div><p class="mp-section-text">internet del bosque = el micelio</p></section>
+                    <section class="mp-section"><div class="mp-section-label">02</div><p class="mp-section-text">las oportunidades naturales de comunicaciones descentralizadas</p></section>
+                    <section class="mp-section"><div class="mp-section-label">03</div><p class="mp-section-text">el corrido como instrumento de memoria colectiva</p></section>
+                    <section class="mp-section"><div class="mp-section-label">04</div><p class="mp-section-text">los corridos son nuestros padres y nuestros abuelos</p></section>
+                  </div>
+                </div>`
+            });
+          }
+        });
+      });
+
+      /* Showcase */
+      const showcase = document.getElementById("showcase");
+      if (showcase) {
+        showcase.addEventListener("click", () => {
+          openWindow({
+            id: "showcase",
+            title: "Showcase",
+            size: "wide",
+            video: SHOWCASE_URL,
+            caption: "Meet Up Touchdesigner x Ableton"
+          });
+        });
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         KEYBOARD
+         ═══════════════════════════════════════════════════════════ */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (lightbox.classList.contains("open")) {
+            lightbox.classList.remove("open");
+            return;
+          }
+          const all = Array.from(winLayer.querySelectorAll(".window"));
+          if (!all.length) return;
+          all.sort((a, b) =>
+            (parseInt(b.style.zIndex, 10) || 0) - (parseInt(a.style.zIndex, 10) || 0)
+          );
+          closeWindow(all[0]);
+        }
+      });
+
+      /* ═══════════════════════════════════════════════════════════
+         RESIZE
+         ═══════════════════════════════════════════════════════════ */
+      let resizeT;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(() => {
+          const vw = window.innerWidth, vh = window.innerHeight;
+          winLayer.querySelectorAll(".window").forEach((el) => {
+            const w = parseFloat(el.style.width) || 0;
+            const h = parseFloat(el.style.height) || 0;
+            const l = parseFloat(el.style.left) || 0;
+            const t = parseFloat(el.style.top) || 0;
+            if (l + w > vw - 8) el.style.left = Math.max(8, vw - w - 8) + "px";
+            if (t + h > vh - 8) el.style.top = Math.max(8, vh - h - 8) + "px";
+          });
+        }, 120);
+      });
+
+    })();
+  </script>
+</body>
+
+</html>
